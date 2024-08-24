@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 public class App extends javax.swing.JFrame {
 
     public App() {
-        initComponents();
+	initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -36,10 +36,20 @@ public class App extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         pn_ferramentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pn_ferramentas.setMinimumSize(new java.awt.Dimension(900, 70));
         pn_ferramentas.setPreferredSize(new java.awt.Dimension(900, 70));
+        pn_ferramentas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pn_ferramentasKeyPressed(evt);
+            }
+        });
 
         bt_new.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
         bt_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/novo 01.png"))); // NOI18N
@@ -75,6 +85,11 @@ public class App extends javax.swing.JFrame {
                 bt_openActionPerformed(evt);
             }
         });
+        bt_open.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bt_openKeyPressed(evt);
+            }
+        });
 
         bt_save.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
         bt_save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/salvar 01.png"))); // NOI18N
@@ -88,6 +103,11 @@ public class App extends javax.swing.JFrame {
         bt_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_saveActionPerformed(evt);
+            }
+        });
+        bt_save.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bt_saveKeyPressed(evt);
             }
         });
 
@@ -105,6 +125,11 @@ public class App extends javax.swing.JFrame {
                 bt_copyActionPerformed(evt);
             }
         });
+        bt_copy.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bt_copyKeyPressed(evt);
+            }
+        });
 
         bt_paste.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
         bt_paste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/colar 01.png"))); // NOI18N
@@ -118,6 +143,11 @@ public class App extends javax.swing.JFrame {
         bt_paste.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_pasteActionPerformed(evt);
+            }
+        });
+        bt_paste.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bt_pasteKeyPressed(evt);
             }
         });
 
@@ -135,6 +165,11 @@ public class App extends javax.swing.JFrame {
                 bt_cutActionPerformed(evt);
             }
         });
+        bt_cut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bt_cutKeyPressed(evt);
+            }
+        });
 
         bt_compile.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
         bt_compile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/compilar 01.png"))); // NOI18N
@@ -150,6 +185,11 @@ public class App extends javax.swing.JFrame {
                 bt_compileActionPerformed(evt);
             }
         });
+        bt_compile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bt_compileKeyPressed(evt);
+            }
+        });
 
         bt_team.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
         bt_team.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/equipe 01.png"))); // NOI18N
@@ -162,6 +202,11 @@ public class App extends javax.swing.JFrame {
         bt_team.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_teamActionPerformed(evt);
+            }
+        });
+        bt_team.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bt_teamKeyPressed(evt);
             }
         });
 
@@ -206,6 +251,11 @@ public class App extends javax.swing.JFrame {
         lb_status.setEnabled(false);
         lb_status.setMinimumSize(new java.awt.Dimension(900, 25));
         lb_status.setPreferredSize(new java.awt.Dimension(900, 25));
+        lb_status.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lb_statusKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pn_statusLayout = new javax.swing.GroupLayout(pn_status);
         pn_status.setLayout(pn_statusLayout);
@@ -220,15 +270,30 @@ public class App extends javax.swing.JFrame {
 
         splitp_msgs.setDividerLocation(250);
         splitp_msgs.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        splitp_msgs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                splitp_msgsKeyPressed(evt);
+            }
+        });
 
         scrollp_editor.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollp_editor.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollp_editor.setMinimumSize(new java.awt.Dimension(80, 100));
+        scrollp_editor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                scrollp_editorKeyPressed(evt);
+            }
+        });
 
         ta_editor.setColumns(10);
         ta_editor.setRows(5);
         ta_editor.setBorder(new NumberedBorder());
         ta_editor.setMinimumSize(new java.awt.Dimension(80, 100));
+        ta_editor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ta_editorKeyPressed(evt);
+            }
+        });
         scrollp_editor.setViewportView(ta_editor);
 
         splitp_msgs.setLeftComponent(scrollp_editor);
@@ -236,6 +301,11 @@ public class App extends javax.swing.JFrame {
         scrollp_console.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollp_console.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollp_console.setMinimumSize(new java.awt.Dimension(80, 100));
+        scrollp_console.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                scrollp_consoleKeyPressed(evt);
+            }
+        });
 
         ta_console.setEditable(false);
         ta_console.setColumns(10);
@@ -243,6 +313,11 @@ public class App extends javax.swing.JFrame {
         ta_console.setText("console log");
         ta_console.setEnabled(false);
         ta_console.setMinimumSize(new java.awt.Dimension(80, 100));
+        ta_console.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ta_consoleKeyPressed(evt);
+            }
+        });
         scrollp_console.setViewportView(ta_console);
 
         splitp_msgs.setRightComponent(scrollp_console);
@@ -269,116 +344,180 @@ public class App extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lb_status.setText(System.getProperty("user.dir") + "\\src\\" + this.getClass().getName() + ".java");
+	lb_status.setText(System.getProperty("user.dir") + "\\src\\" + this.
+		getClass().getName() + ".java");
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_teamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_teamActionPerformed
-        System.out.println("OK TEAM AC");
+	ta_console.setText("\nGabriel Ramos dos Santos\nLucas Bauchspiess\nThiago Bodnar");
     }//GEN-LAST:event_bt_teamActionPerformed
 
     private void bt_compileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_compileActionPerformed
-        System.out.println("OK COMPILE AC");
+	ta_console.setText("compilação de programas ainda não foi implementada");
     }//GEN-LAST:event_bt_compileActionPerformed
 
     private void bt_cutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cutActionPerformed
-        System.out.println("OK CUT AC");
+	System.out.println("OK CUT AC");
     }//GEN-LAST:event_bt_cutActionPerformed
 
     private void bt_pasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pasteActionPerformed
-        System.out.println("OK PASTE AC");
+	System.out.println("OK PASTE AC");
     }//GEN-LAST:event_bt_pasteActionPerformed
 
     private void bt_copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_copyActionPerformed
-        System.out.println("OK COPY AC");
+	System.out.println("OK COPY AC");
     }//GEN-LAST:event_bt_copyActionPerformed
 
     private void bt_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_saveActionPerformed
-        System.out.println("OK SAVE AC");
+	System.out.println("OK SAVE AC");
     }//GEN-LAST:event_bt_saveActionPerformed
 
     private void bt_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_openActionPerformed
-        System.out.println("OK OPEN AC");
+	System.out.println("OK OPEN AC");
     }//GEN-LAST:event_bt_openActionPerformed
 
+    private void bt_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newActionPerformed
+	ta_console.setText(null);
+	ta_editor.setText(null);
+	lb_status.setText(null);
+    }//GEN-LAST:event_bt_newActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+	keyPressed(evt);
+    }//GEN-LAST:event_formKeyPressed
+
     private void bt_newKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_newKeyPressed
-        if (evt.isControlDown()) {
-            switch (evt.getKeyCode()) {
-                case KeyEvent.VK_N:
-                bt_newActionPerformed(null);
-                System.out.println("OK NEW KEY");
-                break;
-                case KeyEvent.VK_O:
-                bt_openActionPerformed(null);
-                System.out.println("OK OPEN KEY");
-                break;
-                case KeyEvent.VK_S:
-                bt_saveActionPerformed(null);
-                System.out.println("OK SAVE KEY");
-                break;
-                case KeyEvent.VK_C:
-                bt_copyActionPerformed(null);
-                System.out.println("OK COPY KEY");
-                break;
-                case KeyEvent.VK_V:
-                bt_pasteActionPerformed(null);
-                System.out.println("OK PASTE KEY");
-                break;
-                case KeyEvent.VK_X:
-                bt_cutActionPerformed(null);
-                System.out.println("OK CUT KEY");
-                break;
-            }
-        } else {
-            switch (evt.getKeyCode()) {
-                case KeyEvent.VK_F7:
-                bt_compileActionPerformed(null);
-                System.out.println("OK COMPILE KEY");
-                break;
-                case KeyEvent.VK_F1:
-                bt_teamActionPerformed(null);
-                System.out.println("OK TEAM KEY");
-                break;
-            }
-        }
+        keyPressed(evt);
     }//GEN-LAST:event_bt_newKeyPressed
 
-    private void bt_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newActionPerformed
-        System.out.println("OK NEW AC");
-    }//GEN-LAST:event_bt_newActionPerformed
+    private void bt_openKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_openKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_bt_openKeyPressed
+
+    private void bt_saveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_saveKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_bt_saveKeyPressed
+
+    private void bt_copyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_copyKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_bt_copyKeyPressed
+
+    private void bt_pasteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_pasteKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_bt_pasteKeyPressed
+
+    private void bt_cutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_cutKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_bt_cutKeyPressed
+
+    private void bt_compileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_compileKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_bt_compileKeyPressed
+
+    private void bt_teamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_teamKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_bt_teamKeyPressed
+
+    private void pn_ferramentasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pn_ferramentasKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_pn_ferramentasKeyPressed
+
+    private void ta_editorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ta_editorKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_ta_editorKeyPressed
+
+    private void ta_consoleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ta_consoleKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_ta_consoleKeyPressed
+
+    private void lb_statusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lb_statusKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_lb_statusKeyPressed
+
+    private void splitp_msgsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_splitp_msgsKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_splitp_msgsKeyPressed
+
+    private void scrollp_editorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_scrollp_editorKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_scrollp_editorKeyPressed
+
+    private void scrollp_consoleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_scrollp_consoleKeyPressed
+        keyPressed(evt);
+    }//GEN-LAST:event_scrollp_consoleKeyPressed
+
+    private void keyPressed(java.awt.event.KeyEvent evt) {
+	if (evt.isControlDown()) {
+	    switch (evt.getKeyCode()) {
+		case KeyEvent.VK_N:
+		    bt_newActionPerformed(null);
+		    break;
+		case KeyEvent.VK_O:
+		    bt_openActionPerformed(null);
+		    break;
+		case KeyEvent.VK_S:
+		    bt_saveActionPerformed(null);
+		    break;
+		case KeyEvent.VK_C:
+		    bt_copyActionPerformed(null);
+		    break;
+		case KeyEvent.VK_V:
+		    bt_pasteActionPerformed(null);
+		    break;
+		case KeyEvent.VK_X:
+		    bt_cutActionPerformed(null);
+		    break;
+	    }
+	} else {
+	    switch (evt.getKeyCode()) {
+		case KeyEvent.VK_F7:
+		    bt_compileActionPerformed(null);
+		    break;
+		case KeyEvent.VK_F1:
+		    bt_teamActionPerformed(null);
+		    break;
+	    }
+	}
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+	/* Set the Nimbus look and feel */
+	//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+	/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+	 */
+	try {
+	    for (javax.swing.UIManager.LookAndFeelInfo info
+		    : javax.swing.UIManager.getInstalledLookAndFeels()) {
+		if ("Nimbus".equals(info.getName())) {
+		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+		    break;
+		}
+	    }
+	} catch (ClassNotFoundException ex) {
+	    java.util.logging.Logger.getLogger(App.class.getName()).log(
+		    java.util.logging.Level.SEVERE, null, ex);
+	} catch (InstantiationException ex) {
+	    java.util.logging.Logger.getLogger(App.class.getName()).log(
+		    java.util.logging.Level.SEVERE, null, ex);
+	} catch (IllegalAccessException ex) {
+	    java.util.logging.Logger.getLogger(App.class.getName()).log(
+		    java.util.logging.Level.SEVERE, null, ex);
+	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+	    java.util.logging.Logger.getLogger(App.class.getName()).log(
+		    java.util.logging.Level.SEVERE, null, ex);
+	}
+	//</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new App().setVisible(true);
-            }
-        });
+	/* Create and display the form */
+	java.awt.EventQueue.invokeLater(new Runnable() {
+	    public void run() {
+		new App().setVisible(true);
+	    }
+	});
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
