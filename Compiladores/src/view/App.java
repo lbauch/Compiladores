@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.event.KeyEvent;
-import java.io.File;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -40,10 +39,11 @@ public class App extends javax.swing.JFrame {
         bt_team = new javax.swing.JButton();
         pn_status = new javax.swing.JPanel();
         lb_status = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(910, 600));
-        setPreferredSize(new java.awt.Dimension(910, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -198,7 +198,7 @@ public class App extends javax.swing.JFrame {
                 .addComponent(bt_compile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bt_team, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn_ferramentasLayout.setVerticalGroup(
             pn_ferramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +214,8 @@ public class App extends javax.swing.JFrame {
 
         pn_status.setPreferredSize(new java.awt.Dimension(900, 25));
 
-        lb_status.setText("jLabel1");
+        lb_status.setText("status");
+        lb_status.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lb_status.setMinimumSize(new java.awt.Dimension(900, 25));
         lb_status.setPreferredSize(new java.awt.Dimension(900, 25));
 
@@ -222,112 +223,121 @@ public class App extends javax.swing.JFrame {
         pn_status.setLayout(pn_statusLayout);
         pn_statusLayout.setHorizontalGroup(
             pn_statusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lb_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lb_status, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
         );
         pn_statusLayout.setVerticalGroup(
             pn_statusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lb_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("console log");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
-                .addComponent(pn_ferramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pn_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pn_ferramentas, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
+            .addComponent(pn_status, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pn_ferramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pn_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bt_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newActionPerformed
-        System.out.println("OK NEW AC");
-    }//GEN-LAST:event_bt_newActionPerformed
-
-    private void bt_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_openActionPerformed
-        System.out.println("OK OPEN AC");
-    }//GEN-LAST:event_bt_openActionPerformed
-
-    private void bt_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_saveActionPerformed
-        System.out.println("OK SAVE AC");
-    }//GEN-LAST:event_bt_saveActionPerformed
-
-    private void bt_copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_copyActionPerformed
-        System.out.println("OK COPY AC");
-    }//GEN-LAST:event_bt_copyActionPerformed
-
-    private void bt_pasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pasteActionPerformed
-        System.out.println("OK PASTE AC");
-    }//GEN-LAST:event_bt_pasteActionPerformed
-
-    private void bt_cutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cutActionPerformed
-        System.out.println("OK CUT AC");
-    }//GEN-LAST:event_bt_cutActionPerformed
-
-    private void bt_compileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_compileActionPerformed
-        System.out.println("OK COMPILE AC");
-    }//GEN-LAST:event_bt_compileActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        lb_status.setText(System.getProperty("user.dir") + "\\src\\" + this.getClass().getName() + ".java");
+    }//GEN-LAST:event_formWindowOpened
 
     private void bt_teamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_teamActionPerformed
         System.out.println("OK TEAM AC");
     }//GEN-LAST:event_bt_teamActionPerformed
 
+    private void bt_compileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_compileActionPerformed
+        System.out.println("OK COMPILE AC");
+    }//GEN-LAST:event_bt_compileActionPerformed
+
+    private void bt_cutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cutActionPerformed
+        System.out.println("OK CUT AC");
+    }//GEN-LAST:event_bt_cutActionPerformed
+
+    private void bt_pasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pasteActionPerformed
+        System.out.println("OK PASTE AC");
+    }//GEN-LAST:event_bt_pasteActionPerformed
+
+    private void bt_copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_copyActionPerformed
+        System.out.println("OK COPY AC");
+    }//GEN-LAST:event_bt_copyActionPerformed
+
+    private void bt_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_saveActionPerformed
+        System.out.println("OK SAVE AC");
+    }//GEN-LAST:event_bt_saveActionPerformed
+
+    private void bt_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_openActionPerformed
+        System.out.println("OK OPEN AC");
+    }//GEN-LAST:event_bt_openActionPerformed
+
     private void bt_newKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_newKeyPressed
         if (evt.isControlDown()) {
             switch (evt.getKeyCode()) {
                 case KeyEvent.VK_N:
-                    bt_newActionPerformed(null);
-                    System.out.println("OK NEW KEY");
-                    break;
+                bt_newActionPerformed(null);
+                System.out.println("OK NEW KEY");
+                break;
                 case KeyEvent.VK_O:
-                    bt_openActionPerformed(null);
-                    System.out.println("OK OPEN KEY");
-                    break;
+                bt_openActionPerformed(null);
+                System.out.println("OK OPEN KEY");
+                break;
                 case KeyEvent.VK_S:
-                    bt_saveActionPerformed(null);
-                    System.out.println("OK SAVE KEY");
-                    break;
+                bt_saveActionPerformed(null);
+                System.out.println("OK SAVE KEY");
+                break;
                 case KeyEvent.VK_C:
-                    bt_copyActionPerformed(null);
-                    System.out.println("OK COPY KEY");
-                    break;
+                bt_copyActionPerformed(null);
+                System.out.println("OK COPY KEY");
+                break;
                 case KeyEvent.VK_V:
-                    bt_pasteActionPerformed(null);
-                    System.out.println("OK PASTE KEY");
-                    break;
+                bt_pasteActionPerformed(null);
+                System.out.println("OK PASTE KEY");
+                break;
                 case KeyEvent.VK_X:
-                    bt_cutActionPerformed(null);
-                    System.out.println("OK CUT KEY");
-                    break;
+                bt_cutActionPerformed(null);
+                System.out.println("OK CUT KEY");
+                break;
             }
         } else {
             switch (evt.getKeyCode()) {
                 case KeyEvent.VK_F7:
-                    bt_compileActionPerformed(null);
-                    System.out.println("OK COMPILE KEY");
-                    break;
+                bt_compileActionPerformed(null);
+                System.out.println("OK COMPILE KEY");
+                break;
                 case KeyEvent.VK_F1:
-                    bt_teamActionPerformed(null);
-                    System.out.println("OK TEAM KEY");
-                    break;
+                bt_teamActionPerformed(null);
+                System.out.println("OK TEAM KEY");
+                break;
             }
         }
     }//GEN-LAST:event_bt_newKeyPressed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lb_status.setText(System.getProperty("user.dir") + "\\src\\" + this.getClass().getName() + ".java");
-    }//GEN-LAST:event_formWindowOpened
+    private void bt_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newActionPerformed
+        System.out.println("OK NEW AC");
+    }//GEN-LAST:event_bt_newActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,6 +383,8 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JButton bt_paste;
     private javax.swing.JButton bt_save;
     private javax.swing.JButton bt_team;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lb_status;
     private javax.swing.JPanel pn_ferramentas;
     private javax.swing.JPanel pn_status;
