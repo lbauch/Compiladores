@@ -319,6 +319,7 @@
                 <LineBorder/>
               </Border>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[900, 25]"/>
             </Property>
@@ -339,6 +340,8 @@
       <SubComponents>
         <Container class="javax.swing.JScrollPane" name="scrollp_editor">
           <Properties>
+            <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
+            <Property name="verticalScrollBarPolicy" type="int" value="22"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[80, 100]"/>
             </Property>
@@ -356,8 +359,8 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="ta_editor">
               <Properties>
-                <Property name="columns" type="int" value="300"/>
-                <Property name="rows" type="int" value="100"/>
+                <Property name="columns" type="int" value="10"/>
+                <Property name="rows" type="int" value="5"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new NumberedBorder()" type="code"/>
                 </Property>
@@ -370,6 +373,8 @@
         </Container>
         <Container class="javax.swing.JScrollPane" name="scrollp_console">
           <Properties>
+            <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
+            <Property name="verticalScrollBarPolicy" type="int" value="22"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[80, 100]"/>
             </Property>
@@ -388,8 +393,8 @@
             <Component class="javax.swing.JTextArea" name="ta_console">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="columns" type="int" value="300"/>
-                <Property name="rows" type="int" value="100"/>
+                <Property name="columns" type="int" value="10"/>
+                <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="console log"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

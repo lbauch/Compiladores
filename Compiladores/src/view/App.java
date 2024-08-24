@@ -203,6 +203,7 @@ public class App extends javax.swing.JFrame {
 
         lb_status.setText("status");
         lb_status.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lb_status.setEnabled(false);
         lb_status.setMinimumSize(new java.awt.Dimension(900, 25));
         lb_status.setPreferredSize(new java.awt.Dimension(900, 25));
 
@@ -220,21 +221,25 @@ public class App extends javax.swing.JFrame {
         splitp_msgs.setDividerLocation(250);
         splitp_msgs.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        scrollp_editor.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollp_editor.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollp_editor.setMinimumSize(new java.awt.Dimension(80, 100));
 
-        ta_editor.setColumns(300);
-        ta_editor.setRows(100);
+        ta_editor.setColumns(10);
+        ta_editor.setRows(5);
         ta_editor.setBorder(new NumberedBorder());
         ta_editor.setMinimumSize(new java.awt.Dimension(80, 100));
         scrollp_editor.setViewportView(ta_editor);
 
         splitp_msgs.setLeftComponent(scrollp_editor);
 
+        scrollp_console.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollp_console.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollp_console.setMinimumSize(new java.awt.Dimension(80, 100));
 
         ta_console.setEditable(false);
-        ta_console.setColumns(300);
-        ta_console.setRows(100);
+        ta_console.setColumns(10);
+        ta_console.setRows(5);
         ta_console.setText("console log");
         ta_console.setEnabled(false);
         ta_console.setMinimumSize(new java.awt.Dimension(80, 100));
