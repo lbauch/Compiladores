@@ -1,8 +1,12 @@
 package view;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.io.*;
 
 public class App extends javax.swing.JFrame {
+    private JTextArea messageArea;
+    private File currentFile;
 
     public App() {
 	initComponents();
@@ -28,6 +32,7 @@ public class App extends javax.swing.JFrame {
         ta_editor = new javax.swing.JTextArea();
         scrollp_console = new javax.swing.JScrollPane();
         ta_console = new javax.swing.JTextArea();
+        messageArea = new JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(910, 600));
@@ -357,29 +362,71 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_compileActionPerformed
 
     private void bt_cutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cutActionPerformed
-	System.out.println("OK CUT AC");
+
     }//GEN-LAST:event_bt_cutActionPerformed
 
     private void bt_pasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pasteActionPerformed
-	System.out.println("OK PASTE AC");
+
     }//GEN-LAST:event_bt_pasteActionPerformed
 
     private void bt_copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_copyActionPerformed
-	System.out.println("OK COPY AC");
+
     }//GEN-LAST:event_bt_copyActionPerformed
 
-    private void bt_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_saveActionPerformed
-	System.out.println("OK SAVE AC");
-    }//GEN-LAST:event_bt_saveActionPerformed
+    private void bt_saveActionPerformed(java.awt.event.ActionEvent evt) {
+        if (currentFile == null) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            int returnValue = fileChooser.showSaveDialog(this);
 
-    private void bt_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_openActionPerformed
-	System.out.println("OK OPEN AC");
-    }//GEN-LAST:event_bt_openActionPerformed
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                currentFile = fileChooser.getSelectedFile();
+                if (!currentFile.getName().endsWith(".txt")) {
+                    currentFile = new File(currentFile.getAbsolutePath() + ".txt");
+                }
+            } else {
+                return;
+            }
+        }
+        try (FileWriter writer = new FileWriter(currentFile)) {
+            writer.write(ta_editor.getText());
+            messageArea.setText("");
+            lb_status.setText("Arquivo salvo: " + currentFile.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao salvar o arquivo", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void bt_openActionPerformed(java.awt.event.ActionEvent evt) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int returnValue = fileChooser.showOpenDialog(this);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            currentFile = fileChooser.getSelectedFile();
+            if (currentFile != null && currentFile.getName().endsWith(".txt")) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(currentFile))) {
+                    StringBuilder content = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        content.append(line).append("\n");
+                    }
+                    ta_editor.setText(content.toString());
+                    messageArea.setText("");
+                    lb_status.setText("Arquivo aberto: " + currentFile.getAbsolutePath());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     private void bt_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newActionPerformed
 	ta_console.setText(null);
 	ta_editor.setText(null);
 	lb_status.setText(null);
+        currentFile = null;
     }//GEN-LAST:event_bt_newActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
