@@ -1,0 +1,144 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Full
+Input = Stream
+Parser = SLR
+#RegularDefinitions
+min: [a-z]
+mai: [A-Z]
+letra: {mai}|{min}
+digito: [0-9]
+prefixo: i_ | f_ | b_ | s_
+carac: [^\"\n%]
+perc:%x
+
+#Tokens
+// Palavras reservadas
+//Gabriel Ramos dos Santos; Lucas Bauchspiess
+
+pr:{min}{letra}*
+main = pr: "main"
+end = pr: "end"
+if = pr: "if"
+elif = pr: "elif"
+else = pr: "else"
+false = pr: "false"
+true = pr: "true"
+read = pr: "read"
+write = pr: "write"
+writeln = pr: "writeln"
+repeat = pr: "repeat"
+until = pr: "until"
+while = pr: "while"
+
+// Caracteres especiais
+
+"&&"
+"||"
+"!"
+"=="
+"!="
+"<"
+">"
+"+"
+"-"
+"*"
+"/"
+","
+";"
+"="
+"("
+")"
+
+// Comentário
+:! ">@"\n[^@]*\n"@<"
+
+// Identificador
+id:! {prefixo}({mai}(({min}|{digito}){mai}?)* | {min} ({mai}? ({min} | {digito}))* {mai}?)
+
+// Constante INT
+cte_int: {digito} | [1-9] {digito}*
+
+// Contante Float
+cte_real: ({digito} | [1-9]{digito}*),(0 | (0*[1-9]+)+)
+
+// Constante String
+cte_string: \"({carac} | {perc})*\"
+
+//bloco:
+:!"(*" [^\"] "*)"
+
+//ignorar:
+:[\s\t\n]
+#NonTerminals
+<principal>
+
+<listaInst>
+<instrucao>
+<interm>
+<decVar>
+<comando>
+<listaId>
+<ident>
+<opcional>
+<cmd_atribuicao>
+<cmd_entrada>
+<cmd_saida>
+<cmd_sel>
+<cmd_repet>
+<listaEntrada>
+<identificador>
+<idOpcional>
+<expressao>
+<listaExpressoes>
+<expressaoOpcional>
+<listaComandos>
+<comandoOpcional>
+<elifOpcional>
+<repeteElIf>
+<elseOpcional>
+<repetir>
+#Grammar
+<principal> ::= main <listaInst> end ;
+
+<listaInst> ::= <instrucao><interm> ;
+
+<instrucao> ::= <decVar> ";" | <comando> ";" ;
+<interm> ::= î | <listaInst>;
+
+<decVar> ::= <listaId> ;
+
+<listaId> ::= id <opcional>;
+<opcional> ::= "," id <listaId> | î ;
+
+<comando> ::= <cmd_atribuicao> | <cmd_entrada> | <cmd_saida> | <cmd_sel> | <cmd_repet> ;
+
+<cmd_atribuicao> ::= <listaId> "=" <expressao> ;
+
+<cmd_entrada> ::= read "(" <listaEntrada> ")" ;
+
+<listaEntrada> ::= <identificador> <idOpcional> ;
+<identificador> ::= cte_string "," id | id ;
+<idOpcional> ::= î | "," <listaEntrada> ;
+
+<cmd_saida> ::= write "(" <listaExpressoes> ")" | writeln "(" <listaExpressoes> ")" ;
+
+<listaExpressoes> ::= <expressao> <expressaoOpcional> ;
+<expressaoOpcional> ::= î | "," <expressao> ;
+
+<cmd_sel> ::= if <expressao> <listaComandos> <elifOpcional> end;
+<listaComandos> ::= <comando> ";" <comandoOpcional> ;
+<comandoOpcional> ::= î | <listaComandos> ;
+<elifOpcional> ::= î | elif <expressao> <listaComandos> <repeteElIf> ;
+<repeteElIf> ::= î | <elifOpcional> ;
+<elseOpcional> ::= î | else <listaComandos>;
+
+<cmd_repet> ::= <repetir> while <expressao> | <repetir> until <expressao>;
+<repetir> ::= repeat <listaComandos>;
+
