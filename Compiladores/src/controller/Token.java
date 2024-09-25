@@ -30,6 +30,6 @@ public class Token
 
     public String toString()
     {
-        return id+" ( "+lexeme+" ) @ "+position;
+        return id+" \t "+lexeme+" \t "+position;
     };
 }

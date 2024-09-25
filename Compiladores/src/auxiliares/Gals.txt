@@ -1,0 +1,102 @@
+min: [a-z]
+mai: [A-Z]
+letra: {mai}|{min}
+digito: [0-9]
+prefixo: i_ | f_ | b_ | s_
+carac: [^\"\n\%]
+perc:"%x
+
+// Palavras reservadas
+
+pr:{min}{letra}*
+main = pr: "main"
+end = pr: "end"
+if = pr: "if"
+elif = pr: "elif"
+else = pr: "else"
+false = pr: "false"
+true = pr: "true"
+read = pr: "read"
+write = pr: "write"
+writeln = pr: "writeln"
+repeat = pr: "repeat"
+until = pr: "until"
+while = pr: "while"
+
+// Caracteres especiais
+
+"&&"
+"||"
+"!"
+"=="
+"!="
+"<"
+">"
+"+"
+"-"
+"*"
+"/"
+","
+";"
+"="
+"("
+")"
+
+// Comentário
+:! ">@"\n[^@]*\n"@<"
+
+// Identificador
+id:! {prefixo}({mai}(({min}|{digito}){mai}?)* | {min} ({mai}? ({min} | {digito}))* {mai}?)
+
+// Constante INT
+cte_int: {digito} | [1-9] {digito}*
+
+// Contante Float
+cte_real: ({digito} | [1-9]{digito}*),(0 | (0*[1-9]+)+)
+
+// Constante String
+cte_string: \"({carac} | {perc})*\"
+
+
+1a parte: ESPECIFICAÇÃO
+
+2a parte: IMPLEMENTAÇÃO
+1) verificar opções (em Ferramentas > Opções): 
+	Forma de Entrada: String
+	Implementação do Autômato: Tabela Compactada (Java)
+	Diferenciar maiúsculas/minúsculas ...
+
+2) gerar código (em Ferramentas > Gerar Código): escolher pasta, gerar 
+   todos os arquivos
+
+3) para usar o código gerado, deve ser chamado a partir da ação 
+   associada ao botão compilar
+
+   Lexico lexico = new Lexico();
+   lexico.setInput( /* texto do editor de textos */ );
+   try {
+   Token t = null;
+   while ( (t = lexico.nextToken()) != null ) {
+     System.out.println(t.getLexeme()); 
+     
+     // só escreve o lexema, necessário escrever t.getId, t.getPosition()
+    
+     // t.getId () - retorna o identificador da classe. Olhar Constants.java e adaptar, pois 
+    // deve ser apresentada a classe por extenso
+    // t.getPosition () - retorna a posição inicial do lexema no editor, necessário adaptar 
+    // para mostrar a linha	
+
+     // esse código apresenta os tokens enquanto não ocorrer erro
+     // no entanto, os tokens devem ser apresentados SÓ se não ocorrer erro, necessário adaptar 
+    // para atender o que foi solicitado		   
+   }
+   }
+   catch ( LexicalError e ) {  // tratamento de erros
+     System.out.println(e.getMessage() + " em " + e.getPosition());
+ 
+     // e.getMessage() - retorna a mensagem de erro de SCANNER_ERRO (olhar ScannerConstants.java 
+     // e adaptar conforme o enunciado da parte 2)
+     // e.getPosition() - retorna a posição inicial do erro, tem que adaptar para mostrar a 
+     // linha  
+    } 
+

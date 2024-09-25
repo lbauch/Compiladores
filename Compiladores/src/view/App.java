@@ -1,15 +1,20 @@
 package view;
 
+import controller.LexicalError;
+import controller.Lexico;
+import controller.Token;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.io.*;
 
 public class App extends javax.swing.JFrame {
+
     private JTextArea messageArea;
     private File currentFile;
-
+    private String txtSaida = "linha\tclasse\t\tlexema\n";
+    
     public App() {
-	initComponents();
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -349,18 +354,59 @@ public class App extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-	lb_status.setText(System.getProperty("user.dir") + "\\src\\" + this.
-		getClass().getName() + ".java");
+        lb_status.setText(System.getProperty("user.dir") + "\\src\\" + this.
+                getClass().getName() + ".java");
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_teamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_teamActionPerformed
-	ta_console.setText("\nGabriel Ramos dos Santos\nLucas Bauchspiess\nThiago Bodnar");
+        ta_console.setText(
+                "\nGabriel Ramos dos Santos\nLucas Bauchspiess\nThiago Bodnar");
     }//GEN-LAST:event_bt_teamActionPerformed
 
     private void bt_compileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_compileActionPerformed
-	ta_console.setText("compilação de programas ainda não foi implementada");
+        Lexico lexico = new Lexico();
+        StringReader stReader = new StringReader(ta_editor.getText());
+        BufferedReader bfReader = new BufferedReader(stReader);
+        Token t = null;
+        lexico.
+                setInput(bfReader);
+        try {
+            while ((t = lexico.nextToken()) != null) {
+                txtSaida += lexico.getLinha() + "\t" + pegarClasse(t) + "\t\t" + t.getLexeme() + "\n";   
+            }
+        } catch (LexicalError e) {  // tratamento de erros
+            if( t != null){
+                txtSaida = "linha " + lexico.getLinha() + ": " + t.getLexeme() + " " + e.getMessage();  
+            }
+            else{
+                txtSaida = "Entrada de dados inválida";
+            }
+        }
+        ta_console.setText(txtSaida);
     }//GEN-LAST:event_bt_compileActionPerformed
 
+    private String pegarClasse(Token token){
+        if(token.getId() >= 2 && token.getId() <= 15){
+            return "palavra reservada";
+        }
+        if(token.getId() >= 16 && token.getId() <= 31){
+            return "símbolo especial";
+        }
+        if(token.getId() == 32){
+            return "identificador";
+        }
+        if(token.getId() == 33){
+            return "constante_int";
+        }
+        if(token.getId() == 34){
+            return "constante_float";
+        }
+        if(token.getId() == 35){
+            return "constante_string";
+        }
+        return null;
+    }
+    
     private void bt_cutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cutActionPerformed
 
     }//GEN-LAST:event_bt_cutActionPerformed
@@ -382,7 +428,8 @@ public class App extends javax.swing.JFrame {
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 currentFile = fileChooser.getSelectedFile();
                 if (!currentFile.getName().endsWith(".txt")) {
-                    currentFile = new File(currentFile.getAbsolutePath() + ".txt");
+                    currentFile = new File(currentFile.getAbsolutePath()
+                            + ".txt");
                 }
             } else {
                 return;
@@ -394,7 +441,8 @@ public class App extends javax.swing.JFrame {
             lb_status.setText("Arquivo salvo: " + currentFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao salvar o arquivo", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro ao salvar o arquivo",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -406,7 +454,8 @@ public class App extends javax.swing.JFrame {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             currentFile = fileChooser.getSelectedFile();
             if (currentFile != null && currentFile.getName().endsWith(".txt")) {
-                try (BufferedReader reader = new BufferedReader(new FileReader(currentFile))) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(
+                        currentFile))) {
                     StringBuilder content = new StringBuilder();
                     String line;
                     while ((line = reader.readLine()) != null) {
@@ -414,7 +463,8 @@ public class App extends javax.swing.JFrame {
                     }
                     ta_editor.setText(content.toString());
                     messageArea.setText("");
-                    lb_status.setText("Arquivo aberto: " + currentFile.getAbsolutePath());
+                    lb_status.setText("Arquivo aberto: " + currentFile.
+                            getAbsolutePath());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -423,14 +473,14 @@ public class App extends javax.swing.JFrame {
     }
 
     private void bt_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newActionPerformed
-	ta_console.setText(null);
-	ta_editor.setText(null);
-	lb_status.setText(null);
+        ta_console.setText(null);
+        ta_editor.setText(null);
+        lb_status.setText(null);
         currentFile = null;
     }//GEN-LAST:event_bt_newActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-	keyPressed(evt);
+        keyPressed(evt);
     }//GEN-LAST:event_formKeyPressed
 
     private void bt_newKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bt_newKeyPressed
@@ -494,77 +544,77 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_scrollp_consoleKeyPressed
 
     private void keyPressed(java.awt.event.KeyEvent evt) {
-	if (evt.isControlDown()) {
-	    switch (evt.getKeyCode()) {
-		case KeyEvent.VK_N:
-		    bt_newActionPerformed(null);
-		    break;
-		case KeyEvent.VK_O:
-		    bt_openActionPerformed(null);
-		    break;
-		case KeyEvent.VK_S:
-		    bt_saveActionPerformed(null);
-		    break;
-		case KeyEvent.VK_C:
-		    bt_copyActionPerformed(null);
-		    break;
-		case KeyEvent.VK_V:
-		    bt_pasteActionPerformed(null);
-		    break;
-		case KeyEvent.VK_X:
-		    bt_cutActionPerformed(null);
-		    break;
-	    }
-	} else {
-	    switch (evt.getKeyCode()) {
-		case KeyEvent.VK_F7:
-		    bt_compileActionPerformed(null);
-		    break;
-		case KeyEvent.VK_F1:
-		    bt_teamActionPerformed(null);
-		    break;
-	    }
-	}
+        if (evt.isControlDown()) {
+            switch (evt.getKeyCode()) {
+                case KeyEvent.VK_N:
+                    bt_newActionPerformed(null);
+                    break;
+                case KeyEvent.VK_O:
+                    bt_openActionPerformed(null);
+                    break;
+                case KeyEvent.VK_S:
+                    bt_saveActionPerformed(null);
+                    break;
+                case KeyEvent.VK_C:
+                    bt_copyActionPerformed(null);
+                    break;
+                case KeyEvent.VK_V:
+                    bt_pasteActionPerformed(null);
+                    break;
+                case KeyEvent.VK_X:
+                    bt_cutActionPerformed(null);
+                    break;
+            }
+        } else {
+            switch (evt.getKeyCode()) {
+                case KeyEvent.VK_F7:
+                    bt_compileActionPerformed(null);
+                    break;
+                case KeyEvent.VK_F1:
+                    bt_teamActionPerformed(null);
+                    break;
+            }
+        }
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-	/* Set the Nimbus look and feel */
-	//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-	/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-	 */
-	try {
-	    for (javax.swing.UIManager.LookAndFeelInfo info
-		    : javax.swing.UIManager.getInstalledLookAndFeels()) {
-		if ("Nimbus".equals(info.getName())) {
-		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-		    break;
-		}
-	    }
-	} catch (ClassNotFoundException ex) {
-	    java.util.logging.Logger.getLogger(App.class.getName()).log(
-		    java.util.logging.Level.SEVERE, null, ex);
-	} catch (InstantiationException ex) {
-	    java.util.logging.Logger.getLogger(App.class.getName()).log(
-		    java.util.logging.Level.SEVERE, null, ex);
-	} catch (IllegalAccessException ex) {
-	    java.util.logging.Logger.getLogger(App.class.getName()).log(
-		    java.util.logging.Level.SEVERE, null, ex);
-	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-	    java.util.logging.Logger.getLogger(App.class.getName()).log(
-		    java.util.logging.Level.SEVERE, null, ex);
-	}
-	//</editor-fold>
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info
+                    : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(App.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(App.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(App.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(App.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-	/* Create and display the form */
-	java.awt.EventQueue.invokeLater(new Runnable() {
-	    public void run() {
-		new App().setVisible(true);
-	    }
-	});
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new App().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

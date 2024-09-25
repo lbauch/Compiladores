@@ -4,6 +4,7 @@ public class Lexico implements Constants
 {
     private int position;
     private String input;
+    private int linha;
 
     public Lexico()
     {
@@ -143,9 +144,18 @@ public class Lexico implements Constants
 
     private char nextChar()
     {
-        if (hasInput())
-            return input.charAt(position++);
+        if (hasInput()){
+            char novoChar = input.charAt(position++);
+            if(novoChar == '\n'){
+                linha ++;
+            }
+            return novoChar;
+        }
         else
             return (char) -1;
+    }
+    
+    public int getLinha(){
+        return this.linha;
     }
 }
